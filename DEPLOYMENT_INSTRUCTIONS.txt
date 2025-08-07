@@ -1,0 +1,37 @@
+
+# DataPulse Privacy Policy Deployment Instructions
+
+## Quick Setup (5 minutes):
+
+### Step 1: Create GitHub Repository
+1. Go to GitHub.com
+2. Click "New repository"
+3. Name: `datapulse-privacy`
+4. Public repository (required for GitHub Pages)
+5. Click "Create repository"
+
+### Step 2: Upload Files
+Upload all files from the `datapulse-privacy-website` folder:
+- index.html
+- privacy-policy.html
+- README.md
+- _config.yml
+
+### Step 3: Enable GitHub Pages
+1. Go to repository Settings
+2. Scroll to "Pages" section
+3. Source: "Deploy from a branch"
+4. Branch: "main" (or "master")
+5. Folder: "/ (root)"
+6. Click "Save"
+
+### Step 4: Get Your URL
+Your privacy policy will be available at:
+- https://[your-username].github.io/datapulse-privacy/
+
+## For Amazon SP-API Application:
+
+Use this URL in your SP-API application registration:
+Privacy Policy URL: https://[your-username].github.io/datapulse-privacy/privacy-policy.html
+
+## Generated: 2025-08-07 05:44:28
