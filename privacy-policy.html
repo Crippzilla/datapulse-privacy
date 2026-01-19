@@ -109,7 +109,7 @@
     <div class="container">
         <h1>DataPulse Privacy Policy</h1>
         
-        <p class="last-updated">Last updated: January 5, 2026</p>
+        <p class="last-updated">Last updated: January 19, 2026</p>
         
         <div class="summary-box">
             <p><strong>DataPulse</strong> is a private desktop application used exclusively by its operator for internal business analysis. We are committed to protecting data privacy and maintaining compliance with applicable regulations.</p>
@@ -122,23 +122,83 @@
         <p>DataPulse processes business-related data necessary for its analytical functions. This includes product information, market data, and user preferences required for application operation.</p>
         
         <h2>Data Storage</h2>
-        <p>All data processed by DataPulse is stored locally on the user's device. The application does not transmit data to external servers or cloud services. Industry-standard encryption is used to protect sensitive information.</p>
+        <p>All data processed by DataPulse is stored locally on the user's device. The application does not transmit data to external servers or cloud services except when explicitly using third-party API integrations (see below). Industry-standard AES-256 encryption is used to protect sensitive information including API credentials.</p>
         
         <div class="commitment-box">
-            <p>🔒 All data remains local • No cloud transmission • Encrypted storage</p>
+            <p>🔒 All data remains local • AES-256 encryption • No cloud transmission unless explicitly requested</p>
         </div>
         
         <h2>Data Sharing</h2>
         <p>We do not share, sell, rent, or distribute any data to third parties. All information processed by the application remains strictly private and is used solely for internal business purposes by the application operator.</p>
         
-        <h2>Third-Party Services</h2>
-        <p>DataPulse may interact with authorised third-party APIs to retrieve publicly available market information. All such interactions comply with the respective service providers' terms of use and data protection requirements. No user data is shared with these services.</p>
+        <h2>Third-Party API Services</h2>
+        <p>DataPulse integrates with authorised third-party APIs to provide market intelligence features. Each integration operates under strict compliance with the respective service provider's terms of use and data protection requirements.</p>
+        
+        <h3>HMRC VAT API</h3>
+        <p>DataPulse connects to HMRC's VAT API to verify UK VAT registration numbers for supplier credibility assessment. When you use the VAT validation feature:</p>
+        <ul>
+            <li>The VAT number you enter is sent to HMRC for verification</li>
+            <li>HMRC returns the registered business name and validation status</li>
+            <li>We cache results locally for 24 hours to reduce API calls</li>
+            <li>We do not store HMRC data permanently or share it with third parties</li>
+            <li>You can delete cached VAT data at any time through Settings</li>
+            <li>Validation is triggered manually only - never automated</li>
+        </ul>
+        <p>For HMRC's privacy policy, see: <a href="https://developer.service.hmrc.gov.uk/api-documentation/docs/help/privacy">HMRC Developer Hub Privacy</a></p>
+        
+        <h3>Google Custom Search API</h3>
+        <p>DataPulse optionally uses Google's Custom Search API to discover company websites for supplier research. When you use the website discovery feature:</p>
+        <ul>
+            <li>The company name is sent to Google for searching</li>
+            <li>Google returns search results which may include URLs</li>
+            <li>We cache discovered URLs locally to avoid repeated searches</li>
+            <li>We do not store search query history</li>
+            <li>Searches are triggered manually only - never automated</li>
+        </ul>
+        <p>Google's search is subject to their <a href="https://policies.google.com/privacy">Privacy Policy</a>. You can disable Google API integration in Settings → API Keys.</p>
+        
+        <h3>Companies House API</h3>
+        <p>DataPulse connects to the UK Companies House API to retrieve publicly available company information for supplier discovery. When you search for companies:</p>
+        <ul>
+            <li>Search queries and company numbers are sent to Companies House</li>
+            <li>Public company data (name, address, directors, filings) is retrieved</li>
+            <li>Results are cached locally for 24 hours to reduce API calls</li>
+            <li>All data is publicly available under the Open Government Licence v3.0</li>
+        </ul>
+        <p>For more information, see: <a href="https://developer.company-information.service.gov.uk/">Companies House API Documentation</a></p>
+        
+        <h3>Amazon Selling Partner API</h3>
+        <p>DataPulse optionally connects to Amazon's Selling Partner API to retrieve product data and pricing information. When enabled:</p>
+        <ul>
+            <li>Product identifiers (ASINs) are sent to Amazon for lookup</li>
+            <li>Amazon returns current pricing, offers, and product details</li>
+            <li>Your Amazon seller credentials are stored locally with AES-256 encryption</li>
+            <li>We do not share your Amazon data with third parties</li>
+            <li>API usage is logged locally for audit compliance</li>
+        </ul>
+        <p>Amazon SP-API usage is subject to <a href="https://developer-docs.amazon.com/sp-api/docs/developer-policy">Amazon's Developer Policy</a>.</p>
+        
+        <h3>Keepa API</h3>
+        <p>DataPulse optionally integrates with Keepa for historical Amazon sales data. When enabled:</p>
+        <ul>
+            <li>Product identifiers are sent to Keepa for historical data lookup</li>
+            <li>Keepa returns price history, sales rank trends, and availability data</li>
+            <li>Your Keepa API key is stored locally with AES-256 encryption</li>
+            <li>Results are cached to reduce API token usage</li>
+        </ul>
         
         <h2>Data Retention</h2>
-        <p>Data is retained locally for as long as necessary for business purposes. Users may clear stored data at any time through the application settings. Uninstalling the application removes all associated data.</p>
+        <p>Data is retained locally for as long as necessary for business purposes. API response caches expire after 24 hours. Users may clear stored data at any time through the application settings. Uninstalling the application removes all associated data.</p>
         
         <h2>Security</h2>
-        <p>We implement appropriate technical measures to protect data against unauthorised access, alteration, or destruction. This includes encryption of sensitive data and secure handling of credentials.</p>
+        <p>We implement appropriate technical measures to protect data against unauthorised access, alteration, or destruction. This includes:</p>
+        <ul>
+            <li>AES-256 encryption for all stored API credentials</li>
+            <li>Windows DPAPI for additional credential protection</li>
+            <li>OAuth 2.0 with secure token refresh for Amazon SP-API</li>
+            <li>Audit logging of all API interactions</li>
+            <li>No credentials hardcoded or embedded in application code</li>
+        </ul>
         
         <h2>User Rights</h2>
         <p>Users maintain full control over their data and may:</p>
@@ -147,6 +207,8 @@
             <li>Delete cached data at any time</li>
             <li>Export their data in standard formats</li>
             <li>Remove all data by uninstalling the application</li>
+            <li>Disable any third-party API integration</li>
+            <li>Clear individual API caches through Settings</li>
         </ul>
         
         <h2>Compliance</h2>
